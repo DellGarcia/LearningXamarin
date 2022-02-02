@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:AwesomeApp.ViewModels"
+             x:Class="AwesomeApp.MainPage">
+
+    <ContentPage.BindingContext>
+        <local:MainPageViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height=".3*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Image Source="xamagon" BackgroundColor="Transparent" 
+               Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3"/>
+            
+        <Editor Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" 
+                Placeholder="Enter Note Here" Text="{Binding Note}"
+                Margin="5"
+                />
+
+        <Button Grid.Column="0" Grid.Row="2" Text="Save" Command="{Binding SaveCommand}"
+                BackgroundColor="Green" TextColor="White" Margin="5, 0"/>
+
+        <Button Grid.Column="1" Grid.Row="2" Text="Erase" Command="{Binding EraseCommand}"
+                BackgroundColor="Red" TextColor="White"/>
+
+        <Button Grid.Column="2" Grid.Row="2" Text="Clear" Command="{Binding ClearCommand}"
+                BackgroundColor="DarkCyan" TextColor="White" Margin="5, 0"/>
+
+        <CollectionView Grid.Row="3" Grid.ColumnSpan="3" ItemsSource="{Binding AllNotes}" Margin="0, 20, 0, 0">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Frame CornerRadius="0" Margin="10, 10" BackgroundColor="LightGray">
+                            <Label Text="{Binding .}" FontSize="Title" TextColor="Black"/>
+                        </Frame>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+
+</ContentPage>
