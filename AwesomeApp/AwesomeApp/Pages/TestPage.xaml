@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AwesomeApp.Pages.TestPage">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <CollectionView Grid.Row="3" Grid.ColumnSpan="3" ItemsSource="{Binding AllUsers}" Margin="0, 20, 0, 0">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame CornerRadius="0" Margin="10, 10" BackgroundColor="LightGray">
+                                <Label Text="{Binding FirstName, StringFormat='O nome é {0}'}" FontSize="Title" TextColor="Black"/>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Label 
+                    Text="{Binding Text}"
+                    Background="White"
+                    TextColor="Black"
+                    FontSize="20"
+                />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

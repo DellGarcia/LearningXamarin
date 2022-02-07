@@ -1,6 +1,10 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using AwesomeApp.Pages;
+using XamWebApiClient;
+using AwesomeApp.Services;
+using AwesomeApp.ViewModels;
 
 namespace AwesomeApp
 {
@@ -10,7 +14,11 @@ namespace AwesomeApp
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            Startup.ConfigureServices();
+            DependencyService.Register<IUserService, UserService>();
+            DependencyService.Register<TestViewModel>();
+
+            MainPage = new NavigationPage(new TestPage());
         }
 
         protected override void OnStart()
